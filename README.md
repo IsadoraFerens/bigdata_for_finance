@@ -69,36 +69,36 @@ Os códigos de conta são hierárquicos, ou seja, o valor de um "pai" deve ser s
 
 ```
                      ┌─────────────────────────────────────────────────┐
-                     │              Portal de Dados CVM                 │
+                     │              Portal de Dados CVM                │
                      │   (DFP Anual, ITR Trimestral, FRE, Cadastro)    │
                      └────────────────────┬────────────────────────────┘
                                           │  Download via requests
                                           ▼
 ┌──────────────────────────────────────────────────────────────────────┐
-│  🟤 BRONZE  (layer_01_bronze)                                         │
+│  🟤 BRONZE  (layer_01_bronze)                                        │
 │  Dado bruto, sem transformação. Ingestão fiel ao que a CVM entrega.  │
-│  PostgreSQL schema: bronze_01                                         │
+│  PostgreSQL schema: bronze_01                                        │
 └─────────────────────────────┬────────────────────────────────────────┘
                               │  Deduplicação, hierarquia, normalização
                               ▼
 ┌──────────────────────────────────────────────────────────────────────┐
-│  ⚪ SILVER  (layer_02_silver)                                         │
+│  ⚪ SILVER  (layer_02_silver)                                        │
 │  Golden Schema (26 colunas). Validação matemática. Flags de auditoria│
-│  PostgreSQL schema: silver_02                                         │
+│  PostgreSQL schema: silver_02                                        │
 └─────────────────────────────┬────────────────────────────────────────┘
                               │  Agregações e métricas de negócio
                               ▼
 ┌──────────────────────────────────────────────────────────────────────┐
-│  🟡 GOLD  (layer_03_gold)                                             │
-│  Tabelas prontas para análise, Valuation e dashboards                 │
-│  PostgreSQL schema: gold_03                                           │
+│  🟡 GOLD  (layer_03_gold)                                            │
+│  Tabelas prontas para análise, Valuation e dashboards                │
+│  PostgreSQL schema: gold_03                                          │
 └──────────────────────────────────────────────────────────────────────┘
                               │
                               ▼
-                    ┌─────────────────────┐
-                    │  Dashboard Streamlit  │
-                    │  (dashboard/app.py)   │
-                    └─────────────────────┘
+                    ┌──────────────────────┐
+                    │  Dashboard Streamlit │
+                    │  (dashboard/app.py)  │
+                    └──────────────────────┘
 ```
 
 ---
